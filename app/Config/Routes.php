@@ -27,6 +27,9 @@ $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 $routes->get('/deconnexion', 'DeconnexionController::deconnexion');
 $routes->post('/deconnexion', 'DeconnexionController::deconnexion');
 
+$routes->get('/api/getCategories', 'WebServiceController::getCategories');
+$routes->get('/api/getVetementParCategoriesId/(:num)', 'WebServiceController::getVetementParCategoriesId/$1');
+
 
 
 
