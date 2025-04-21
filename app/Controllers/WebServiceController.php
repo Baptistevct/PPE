@@ -10,8 +10,10 @@ class WebServiceController extends BaseController {
     
     use ResponseTrait;
     function getCategories(){
-        $categories= Categorie::all();
-        return $this->respond($categories);
+        $typeVetements = Vetement::select('typeVetement')
+            ->distinct()
+            ->get();
+        return $this->respond($typeVetements);
     }
 
 
@@ -34,32 +36,19 @@ class WebServiceController extends BaseController {
     }
 
 
-
-    function getVetementParCategoriesId(int $catId){
-        $chaine="[";
-        $db = \Config\Database::connect();
-        $req=$db->query("SELECT DISTINCT modele FROM vetements");
-        $results = $req->getResult();
-        $results_sz=count($results);
-        $com=0;
+    function getVetementParCategoriesId(String $catId){
+        $vetements = Vetement::where('modele', $catId)
+            ->select('modele', 'typeVetement')
+            ->distinct()
+            ->get();
         
-        foreach($results as $ligne){
-            $mod=$ligne->modele;
-
-            //nom des modeles
-            $chaine = $chaine.'{ "modele" : "'.$mod.'","tailles": ';
-
-            //recupere les tailles pour ce modele
-            $chaineTableau=json_encode($this->tableauDeTailles($mod));
-            $chaine=$chaine.$chaineTableau;
-            $chaine=$chaine.'}';
-            $com++;
-            if($com<$results_sz){
-                $chaine.=",";
-            }
+        foreach($vetements as $vetement) {
+            $tailles = Vetement::where('modele', $vetement->modele)
+                ->pluck('taille')
+                ->toArray();
+            $vetement->tailles = $tailles;
         }
-        $chaine.="]";
-        echo $chaine;
+        
+        return $this->respond($vetements);
     }
-
 }
