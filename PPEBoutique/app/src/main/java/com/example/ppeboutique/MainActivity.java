@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestLogin(String mail, String pw){
-        String url= "http://192.168.50.150/~jupiter/PPE-Vetements/public/api/login";
+        String url= "http://192.168.0.107/~baptiste.vincent/PPE/public/api/login";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, this::processLogin, this::gereErreursWS) {
             @Nullable
             @Override
