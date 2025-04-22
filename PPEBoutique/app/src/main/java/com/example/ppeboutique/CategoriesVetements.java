@@ -58,7 +58,7 @@ public class CategoriesVetements extends AppCompatActivity {
      * Methode qui envoie la requete de recuperation des categories
      */
     public void requestCategories(){
-        String url= "http://192.168.50.150/~jupiter/PPE-Vetements/public/api/getCategories";
+        String url= "http://192.168.0.107/~baptiste.vincent/PPE/public/api/getCategories";
         StringRequest stringRequest;
         stringRequest = new StringRequest(Request.Method.GET,url,this::processCategories,this::gereErreursWS);
         //depot de la demande
