@@ -28,7 +28,7 @@ $routes->get('/deconnexion', 'DeconnexionController::deconnexion');
 $routes->post('/deconnexion', 'DeconnexionController::deconnexion');
 
 $routes->get('/api/getCategories', 'WebServiceController::getCategories');
-$routes->get('/api/getVetementParCategoriesId/(:any)', 'WebServiceController::getVetementParCategoriesId/$1');
+$routes->get('/api/getVetementParCategories/(:alpha)', 'WebServiceController::getVetementParCategories/$1');
 
 $routes->post('/api/login', 'AuthController::index');
 
