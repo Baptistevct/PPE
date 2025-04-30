@@ -10,7 +10,7 @@ class WebServiceController extends BaseController {
     
     use ResponseTrait;
     function getCategories(){
-        $typeVetements = Vetement::select('typeVetement')
+        $typeVetements = Vetement::select('idCategories','typeVetement')
             ->distinct()
             ->get();
         return $this->respond($typeVetements);
@@ -36,8 +36,8 @@ class WebServiceController extends BaseController {
     }
 
 
-    function getVetementParCategoriesId(String $catId){
-        $vetements = Vetement::where('modele', $catId)
+    function getVetementParCategories( $type){
+        $vetements = Vetement::where('typeVetement', $type)
             ->select('modele', 'typeVetement')
             ->distinct()
             ->get();
