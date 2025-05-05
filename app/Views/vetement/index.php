@@ -39,11 +39,7 @@
 <u>Prix</u> : 
 <?php echo $vetement->prix; ?> €
 <br> <br>
-<?php if (session()->get('email') != 'admin@gmail.com'){ ?>
-<form action="<?php echo base_url('panier/ajouterPanier/'.$vetement->idVetement);?>" method="POST">
-<input class="panier" type="submit" value="Ajouter au panier" />
-</form>
-<?php } ?>
+
 
 <?php if (session()->get('email') == 'admin@gmail.com'){ ?>
 <form action="<?php echo base_url('vetement/delete/'.$vetement->idVetement);?>" method="POST">
