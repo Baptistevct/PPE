@@ -2,10 +2,6 @@
     <a href="http://localhost/~baptiste.vincent/PPE/public/vetement" class="nav-item">Vêtements</a>
     
 
-    <?php if (session()->get('email') != 'admin@gmail.com'){ ?>
-    <a href="http://localhost/~baptiste.vincent/PPE/public/panier" class="nav-item">Panier</a>
-    <?php } ?>
-
     <?php if (session()->get('idUtilisateur') != null) : ?>
     <a href="http://localhost/~baptiste.vincent/PPE/public/deconnexion" onclick="return confirm('Voulez-vous vraiment vous deconnecter ?');" class="nav-item">Se déconnecter</a>
     <?php else : ?>
